@@ -50,11 +50,10 @@ def message_logger(number,file_name,line,reason,title_name):
     return '{0}-{1}:{2}-{3} ({4})'.format(number,file_name,title_name,line,reason)
 
 if __name__ == '__main__':
-    # for root,dirs,files in os.walk(res_path):
-        # for file in files:
-            # if file.endswith('.md'):
-                # md_files.append(os.path.join(root,file))
-    md_files=['/home/cherry/Projects/picture_checker/res/Docker笔记/Docker容器技术.md']
+    for root,dirs,files in os.walk(res_path):
+        for file in files:
+            if file.endswith('.md'):
+                md_files.append(os.path.join(root,file))
     for index,element in enumerate(md_files):
         index = index+1
         with open(element,'r') as file,open('log.txt','a') as logfile:
