@@ -32,9 +32,11 @@ def update_level(per_line):
     if len(per_line) == 0:
         return
     else:# 小于0的情况不存在
-        if len(per_line)-len(per_line.replace('`','')) ==3:
-            code_level = not code_level # 代码区状态翻转，必成对出现
-            return
+        if len(per_line)-len(per_line.replace('`','')) ==3 and per_line[0]=='`':
+            if len(per_line.replace('`','')) > 0:
+                code_level = True
+            else: # 我就不信这还会识别错？
+                code_level = False
         if per_line[0] == '#' and code_level == False:
             title_name = per_line.replace('#','').strip()
             title_level = len(per_line) - len(title_name)
@@ -47,10 +49,11 @@ def message_logger(number,file_name,line,reason,title_name):
     return '{0}-{1}:{2}-{3} ({4})'.format(number,file_name,title_name,line,reason)
 
 if __name__ == '__main__':
-    for root,dirs,files in os.walk(res_path):
-        for file in files:
-            if file.endswith('.md'):
-                md_files.append(os.path.join(root,file))
+    # for root,dirs,files in os.walk(res_path):
+        # for file in files:
+            # if file.endswith('.md'):
+                # md_files.append(os.path.join(root,file))
+    md_files=['/home/cherry/Projects/picture_checker/res/Docker笔记/Docker容器技术.md']
     for index,element in enumerate(md_files):
         index = index+1
         with open(element,'r') as file,open('log.txt','a') as logfile:
