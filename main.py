@@ -5,6 +5,9 @@ title_name = '' # 标题名称
 code_level = False
 res_path = os.path.join(os.getcwd(),'res')
 md_files = []
+headers = {
+    'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+          }
 
 # proxies = {'http': 'http://localhost:7890', 'https': 'http://localhost:7890'}
 
@@ -60,7 +63,7 @@ if __name__ == '__main__':
                             logfile.write((message_logger(line_number,os.path.basename(element),per_line,'路径错误',title_name)+'\n'))
                         else:
                             try:
-                                request_code = requests.get(url[0],timeout=10).status_code
+                                request_code = requests.get(url[0],timeout=10,headers=headers).status_code
                                 if request_code == requests.codes.ok:
                                     print(message_logger(line_number,os.path.basename(element),per_line,'访问成功',title_name))
                                 else:
@@ -69,5 +72,8 @@ if __name__ == '__main__':
                             except requests.exceptions.Timeout:
                                 print(message_logger(line_number,os.path.basename(element),per_line,'访问超时',title_name))
                                 logfile.write(message_logger(line_number,os.path.basename(element),per_line,'访问超时',title_name))
+                            except Exception:
+                                print(message_logger(line_number,os.path.basename(element),per_line,'资源不存在',title_name))
+                                logfile.write(message_logger(line_number,os.path.basename(element),per_line,'资源不存在',title_name))
             logfile.close()
             file.close()
