@@ -71,9 +71,9 @@ if __name__ == '__main__':
                                     logfile.write(message_logger(line_number,os.path.basename(element),per_line,f'访问失败状态{request_code}',title_name)+'\n')
                             except requests.exceptions.Timeout:
                                 print(message_logger(line_number,os.path.basename(element),per_line,'访问超时',title_name))
-                                logfile.write(message_logger(line_number,os.path.basename(element),per_line,'访问超时',title_name))
+                                logfile.write(message_logger(line_number,os.path.basename(element),per_line,'访问超时',title_name)+'\n')
                             except Exception:
                                 print(message_logger(line_number,os.path.basename(element),per_line,'资源不存在',title_name))
-                                logfile.write(message_logger(line_number,os.path.basename(element),per_line,'资源不存在',title_name))
+                                logfile.write(message_logger(line_number,os.path.basename(element),per_line,'资源不存在',title_name)+'\n')
             logfile.close()
             file.close()
