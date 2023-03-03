@@ -32,7 +32,7 @@ def update_level(per_line):
     if len(per_line) == 0:
         return
     else:# 小于0的情况不存在
-        if per_line[0] == '`':
+        if len(per_line)-len(per_line.replace('`','')) ==3:
             code_level = not code_level # 代码区状态翻转，必成对出现
             return
         if per_line[0] == '#' and code_level == False:
