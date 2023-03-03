@@ -37,6 +37,7 @@ def update_level(per_line):
                 code_level = True
             else: # 我就不信这还会识别错？
                 code_level = False
+            return
         if per_line[0] == '#' and code_level == False:
             title_name = per_line.replace('#','').strip()
             title_level = len(per_line) - len(title_name)
