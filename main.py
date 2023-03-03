@@ -35,7 +35,7 @@ def update_level(per_line):
         if per_line[0] == '`':
             code_level = not code_level # 代码区状态翻转，必成对出现
             return
-        if per_line[0] == '#' and not code_level:
+        if per_line[0] == '#' and code_level == False:
             title_name = per_line.replace('#','').strip()
             title_level = len(per_line) - len(title_name)
             return
